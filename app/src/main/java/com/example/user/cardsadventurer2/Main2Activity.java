@@ -47,11 +47,6 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        level = findViewById(R.id.level_player);
-        hpn = findViewById(R.id.hp_player);
-
-        bundle3.putIntArray("monster", monster_stats[0]);
-
         target = findViewById(R.id.name_target);
         conversation = findViewById(R.id.conversation);
         name_item = findViewById(R.id.name_item);
