@@ -27,7 +27,7 @@ public class Main2Activity extends AppCompatActivity {
     TextView exp;
     TextView money;
 
-    int[] player_stats = getIntent().getIntArrayExtra("new");
+    int[] player_stats = getIntent().getExtras().getIntArray("new");
 
     int glv = player_stats[0];
     int ghp = player_stats[1];
