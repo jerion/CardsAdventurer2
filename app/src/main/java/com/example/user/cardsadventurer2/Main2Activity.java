@@ -75,11 +75,11 @@ public class Main2Activity extends AppCompatActivity {
         get2 = findViewById(R.id.btn_get2);
         get3 = findViewById(R.id.btn_get3);
 
-        level.setText(player_stats[0]);
-        hp.setText(player_stats[1]+"/"+player_stats[1]);
-        mp.setText(player_stats[2]+"/"+player_stats[2]);
-        exp.setText(0+"/"+player_stats[3]);
-        money.setText(player_stats[4]);
+        level.setText(""+player_stats[0]);
+        hp.setText(""+player_stats[1]+"/"+player_stats[1]);
+        mp.setText(""+player_stats[2]+"/"+player_stats[2]);
+        exp.setText("0 /"+player_stats[3]);
+        money.setText(""+player_stats[4]);
     }
 
     Charactor monster[] = {
