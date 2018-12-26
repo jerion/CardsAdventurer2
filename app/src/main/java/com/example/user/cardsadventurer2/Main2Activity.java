@@ -29,9 +29,6 @@ public class Main2Activity extends AppCompatActivity {
 
     int[] player_stats = new int[5];
 
-    Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
-    Bundle bundle3 = new Bundle();
-
     Button card;
     Button skill;
     TextView card_left;
@@ -46,7 +43,13 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        player_stats = getIntent().getIntArrayExtra("new");
+        Bundle bundle = getIntent().getExtras().getBundle("new");
+
+        player_stats[0] = bundle.getInt("lv");
+        player_stats[1] = bundle.getInt("hp");
+        player_stats[2] = bundle.getInt("mp");
+        player_stats[3] = bundle.getInt("exp");
+        player_stats[4] = bundle.getInt("money");
 
         target = findViewById(R.id.name_target);
         conversation = findViewById(R.id.conversation);
