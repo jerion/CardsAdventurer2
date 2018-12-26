@@ -22,18 +22,16 @@ public class MainActivity extends AppCompatActivity {
         bstart = findViewById(R.id.btn_sta);
         bcontinue = findViewById(R.id.btn_con);
 
-        int[] player_stats = {player.Level, player.health, player.mana, player.experience, player.Money};
+        final int[] player_stats = {player.Level, player.health, player.mana, player.experience, player.Money};
         int[] old_player;
 
         final Intent intent = new Intent(MainActivity.this, Main2Activity.class);
 
-        final Bundle bundle = new Bundle();
-        bundle.putIntArray("new",player_stats);
 
         bstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtras(bundle);
+                intent.putExtra("new", player_stats);
                 startActivity(intent);
                 MainActivity.this.finish();
             }
