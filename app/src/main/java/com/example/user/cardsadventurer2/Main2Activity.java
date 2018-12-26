@@ -21,6 +21,8 @@ public class Main2Activity extends AppCompatActivity {
 
         level = findViewById(R.id.level_player);
         hpn = findViewById(R.id.hp_player);
+
+        hpn.setText(monster[0].health);
     }
 
     Charactor monster[] = { new Charactor("蝙蝠", 1,3,1,1,3),
