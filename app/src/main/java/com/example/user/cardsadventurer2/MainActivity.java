@@ -25,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         bstart = findViewById(R.id.btn_sta);
         bcontinue = findViewById(R.id.btn_con);
 
+        int[] player_stats = {player.level, player.health,player.mana,player.experience,player.money};
+        int[] old_player ;
+
         final Intent intent = new Intent(MainActivity.this, Main2Activity.class);
 
         Bundle bundle = new Bundle();
-        Bundle bundle1 = new Bundle();
-
-        bundle.putSerializable("new", (Serializable) player);
+        bundle.putIntArray("new",player_stats);
 
         bstart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,4 +49,3 @@ public class MainActivity extends AppCompatActivity {
     }
     Charactor player = new Charactor("愚蠢的人", 1, 20, 1, 2,25);
 }
-
