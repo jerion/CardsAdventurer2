@@ -33,11 +33,6 @@ public class Main2Activity extends AppCompatActivity {
         level = findViewById(R.id.level_player);
         hpn = findViewById(R.id.hp_player);
 
-        for (int i = 0; i<4; i++)
-        {
-            monster_stats[i][0]
-        }
-
         bundle3.putIntArray("monster", monster_stats[0]);
 
     }

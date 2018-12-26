@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         bcontinue = findViewById(R.id.btn_con);
 
         int[] player_stats = {player.level, player.health,player.mana,player.experience,player.money};
-        int[] old_player ;
+        int[] old_player;
 
         final Intent intent = new Intent(MainActivity.this, Main2Activity.class);
 
