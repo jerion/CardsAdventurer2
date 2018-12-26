@@ -47,14 +47,11 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-<<<<<<< HEAD
         level = findViewById(R.id.level_player);
         hpn = findViewById(R.id.hp_player);
 
         bundle3.putIntArray("monster", monster_stats[0]);
 
-=======
->>>>>>> c0acd6507a5e0b75d4f3346450f7ad2b729a18f7
         target = findViewById(R.id.name_target);
         conversation = findViewById(R.id.conversation);
         name_item = findViewById(R.id.name_item);
@@ -87,7 +84,6 @@ public class Main2Activity extends AppCompatActivity {
             new Charactor("梅杜莎", 3, 15, 4, 6, 20)};
 
     Charactor boss[] = {new Charactor("劍客", 4, 48, 4, 0, 0)};
-<<<<<<< HEAD
 
     Atk_Card normal_atk[] = {
             new Atk_Card("攻擊", "無", 1, 0, 2),
@@ -126,6 +122,4 @@ public class Main2Activity extends AppCompatActivity {
             new Stage("梅杜莎","美杜莎是戈耳貢女妖之一，外觀描述是纏著龍鱗的頭，像野豬一般的獠牙，青銅的手爪，金色的翅膀。任何直望美杜莎雙眼的人都會變成石像。"),
             new Stage("劍客","劍客為行俠仗義的人。"),
     };
-=======
->>>>>>> c0acd6507a5e0b75d4f3346450f7ad2b729a18f7
 }
