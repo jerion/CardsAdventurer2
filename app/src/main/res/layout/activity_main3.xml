@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/enemy03" />
+                    app:srcCompat="@drawable/enemy1" />
 
                 <LinearLayout
                     android:layout_width="133dp"
@@ -155,7 +155,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/fighter" />
+                    app:srcCompat="@drawable/player" />
 
                 <LinearLayout
                     android:layout_width="123dp"
@@ -323,7 +323,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="76dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/item03" />
+                app:srcCompat="@drawable/effect1" />
 
             <Button
                 android:id="@+id/btn_end_turn"
