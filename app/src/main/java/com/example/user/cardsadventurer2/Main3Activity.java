@@ -20,5 +20,28 @@ public class Main3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
+        bstart = findViewById(R.id.btn_sta);
+        bcontinue = findViewById(R.id.btn_con);
     }
 }
