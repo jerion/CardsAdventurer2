@@ -30,8 +30,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                Bundle bundle = new Bundle();
                 intent.setClass(MainActivity.this, Main2Activity.class);
-                intent.putExtra("new", player_stats);
+                bundle.putInt("lv", player_stats[0]);
+                bundle.putInt("hp", player_stats[1]);
+                bundle.putInt("mp", player_stats[2]);
+                bundle.putInt("exp", player_stats[3]);
+                bundle.putInt("money", player_stats[4]);
+                intent.putExtra("new", bundle);
                 startActivity(intent);
             }
         });
