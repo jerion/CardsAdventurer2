@@ -80,6 +80,7 @@ public class Main2Activity extends AppCompatActivity {
         mp.setText(""+player_stats[2]+"/"+player_stats[2]);
         exp.setText("0+/"+player_stats[3]);
         money.setText(""+player_stats[4]);
+        
     }
 
     Charactor monster[] = {
