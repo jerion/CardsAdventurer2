@@ -27,13 +27,7 @@ public class Main2Activity extends AppCompatActivity {
     TextView exp;
     TextView money;
 
-    int[] player_stats = getIntent().getExtras().getIntArray("new");
-
-    int glv = player_stats[0];
-    int ghp = player_stats[1];
-    int gmp = player_stats[2];
-    int gexp = player_stats[3];
-    int gmoney = player_stats[4];
+    int[] player_stats = new int[5];
 
     Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
     Bundle bundle3 = new Bundle();
@@ -51,6 +45,8 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        player_stats = getIntent().getIntArrayExtra("new");
 
         target = findViewById(R.id.name_target);
         conversation = findViewById(R.id.conversation);
@@ -75,11 +71,11 @@ public class Main2Activity extends AppCompatActivity {
         get2 = findViewById(R.id.btn_get2);
         get3 = findViewById(R.id.btn_get3);
 
-        level.setText(glv);
-        hp.setText(ghp+"/"+ghp);
-        mp.setText(gmp+"/"+gmp);
-        exp.setText(0+"/"+gexp);
-        money.setText(gmoney);
+        level.setText(player_stats[0]);
+        hp.setText(player_stats[1]+"/"+player_stats[1]);
+        mp.setText(player_stats[2]+"/"+player_stats[2]);
+        exp.setText(0+"/"+player_stats[3]);
+        money.setText(player_stats[4]);
     }
 
     Charactor monster[] = {
