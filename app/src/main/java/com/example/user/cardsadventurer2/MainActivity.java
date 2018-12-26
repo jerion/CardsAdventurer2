@@ -1,13 +1,11 @@
 package com.example.user.cardsadventurer2;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import java.io.Serializable;
+import android.widget.Toast;
 
 import charactor.Charactor;
 
@@ -29,22 +27,25 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(MainActivity.this, Main2Activity.class);
 
-        Bundle bundle = new Bundle();
+        final Bundle bundle = new Bundle();
         bundle.putIntArray("new",player_stats);
 
         bstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtras(bundle);
                 startActivity(intent);
+                MainActivity.this.finish();
             }
         });
 
         bcontinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(MainActivity.this, "開發中功能，無作用", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     Charactor player = new Charactor("愚蠢的人", 1, 20, 1, 2,25);
 }

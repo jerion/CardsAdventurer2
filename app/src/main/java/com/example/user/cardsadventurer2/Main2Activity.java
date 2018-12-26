@@ -22,13 +22,19 @@ public class Main2Activity extends AppCompatActivity {
     TextView name_item;
     TextView intro_item;
     TextView level;
-    TextView hp, hpn;
-    TextView mp, mpn;
-    TextView exp, expn;
+    TextView hp;
+    TextView mp;
+    TextView exp;
     TextView money;
 
-    Bundle bundle1 = getIntent().getExtras().getBundle("new");
+    Bundle bundle1 = getIntent().getExtras();
     int[] player_stats = bundle1.getIntArray("new");
+
+    int glv = player_stats[0];
+    int ghp = player_stats[1];
+    int gmp = player_stats[2];
+    int gexp = player_stats[3];
+    int gmoney = player_stats[4];
 
     Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
     Bundle bundle3 = new Bundle();
@@ -53,11 +59,8 @@ public class Main2Activity extends AppCompatActivity {
         intro_item = findViewById(R.id.intro_item);
         level = findViewById(R.id.level_player);
         hp = findViewById(R.id.hp_player);
-        hpn = findViewById(R.id.hp_player);
         mp = findViewById(R.id.sp_player);
-        mpn = findViewById(R.id.sp_player);
         exp = findViewById(R.id.exp_player);
-        expn = findViewById(R.id.exp_player);
         money = findViewById(R.id.gold);
         card = findViewById(R.id.btn_card_player);
         skill = findViewById(R.id.btn_skill);
@@ -107,8 +110,8 @@ public class Main2Activity extends AppCompatActivity {
     };
 
     Effect_Card corpus[] = {
-            new Effect_Card("法典", "無", 1, 1,3, 0),
-            new Effect_Card("法典", "無", 2, 2,6, 0),
+            new Effect_Card("法典", "無", 1, 1,0, 1),
+            new Effect_Card("法典", "無", 2, 3,0, 2),
     };
 
     Stage stage[] = {
