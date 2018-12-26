@@ -27,8 +27,7 @@ public class Main2Activity extends AppCompatActivity {
     TextView exp;
     TextView money;
 
-    Bundle bundle1 = getIntent().getExtras();
-    int[] player_stats = bundle1.getIntArray("new");
+    int[] player_stats = getIntent().getIntArrayExtra("new");
 
     int glv = player_stats[0];
     int ghp = player_stats[1];
@@ -80,7 +79,7 @@ public class Main2Activity extends AppCompatActivity {
         hp.setText(ghp+"/"+ghp);
         mp.setText(gmp+"/"+gmp);
         exp.setText(0+"/"+gexp);
-        money.setText(player_stats[4]);
+        money.setText(gmoney);
     }
 
     Charactor monster[] = {
