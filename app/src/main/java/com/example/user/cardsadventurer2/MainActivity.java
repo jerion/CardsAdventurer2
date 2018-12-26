@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button bstart;
     Button bcontinue;
+    Charactor player = new Charactor("愚蠢的人", 1, 20, 1, 2,25);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +26,13 @@ public class MainActivity extends AppCompatActivity {
         final int[] player_stats = {player.Level, player.health, player.mana, player.experience, player.Money};
         int[] old_player;
 
-        final Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-
-
         bstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Main2Activity.class);
                 intent.putExtra("new", player_stats);
                 startActivity(intent);
-                MainActivity.this.finish();
             }
         });
 
@@ -44,6 +43,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    Charactor player = new Charactor("愚蠢的人", 1, 20, 1, 2,25);
 }
