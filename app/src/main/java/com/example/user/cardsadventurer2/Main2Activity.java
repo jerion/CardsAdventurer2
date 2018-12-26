@@ -31,6 +31,7 @@ public class Main2Activity extends AppCompatActivity {
     Bundle bundle3 = new Bundle();
 
     int n = 0;
+    int test;
     int[][] monster_stats;
 
     Button card;
