@@ -29,8 +29,7 @@ public class Main2Activity extends AppCompatActivity {
 
     int[] player_stats = new int[5];
 
-    Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
-    Bundle bundle3 = new Bundle();
+
 
     Button card;
     Button skill;
