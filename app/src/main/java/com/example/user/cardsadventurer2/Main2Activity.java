@@ -75,7 +75,14 @@ public class Main2Activity extends AppCompatActivity {
         get1 = findViewById(R.id.btn_get1);
         get2 = findViewById(R.id.btn_get2);
         get3 = findViewById(R.id.btn_get3);
+
+        level.setText(glv);
+        hp.setText(ghp+"/"+ghp);
+        mp.setText(gmp+"/"+gmp);
+        exp.setText(0+"/"+gexp);
+        money.setText(player_stats[4]);
     }
+
     Charactor monster[] = {
             new Charactor("蝙蝠", 1, 3,1,1,3),
             new Charactor("樹精", 2, 12, 3, 3, 7),
