@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -78,6 +79,14 @@ public class Main2Activity extends AppCompatActivity {
         mp.setText(""+player_stats[2]+"/"+player_stats[2]);
         exp.setText("0+/"+player_stats[3]);
         money.setText(""+player_stats[4]);
+
+        event2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        
     }
 
     Charactor monster[] = {
