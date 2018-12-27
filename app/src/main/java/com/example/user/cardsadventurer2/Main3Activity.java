@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import card.Atk_Card;
+import card.Card;
+
 public class Main3Activity extends AppCompatActivity {
 
     TextView hp_enemy, mp_enemy, hp_player, mp_player;
@@ -21,6 +24,9 @@ public class Main3Activity extends AppCompatActivity {
 
     String enemy_name;
     int[] enemy_stats = new int[5];
+    Card[] card = {
+            normal_atk[1]
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,4 +60,11 @@ public class Main3Activity extends AppCompatActivity {
 
 
     }
+
+    Atk_Card normal_atk[] = {
+            new Atk_Card("攻擊", "無", 1, 0, 2),
+            new Atk_Card("攻擊", "無", 2, 0, 4),
+            new Atk_Card("攻擊", "無", 3, 0, 6),
+            new Atk_Card("攻擊", "無", 4, 0, 8),
+    };
 }
