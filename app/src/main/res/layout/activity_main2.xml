@@ -206,7 +206,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="200dp"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -217,27 +217,7 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/target1" />
 
-                <ImageButton
-                    android:id="@+id/imbtn_event2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/enemy1" />
-
-                <ImageButton
-                    android:id="@+id/imbtn_event3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/target2" />
-
             </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="125dp" />
 
             <TextView
                 android:id="@+id/intro_event"
