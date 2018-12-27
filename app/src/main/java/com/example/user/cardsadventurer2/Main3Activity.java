@@ -19,6 +19,9 @@ public class Main3Activity extends AppCompatActivity {
     ImageView im_enemy;
     ListView card_battlefield, card_player;
 
+    String enemy_name;
+    int[] enemy_stats = new int[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class Main3Activity extends AppCompatActivity {
         im_enemy = findViewById(R.id.im_enemy);
         card_battlefield = findViewById(R.id.card_battlefield);
         card_player = findViewById(R.id.card_player);
+
 
     }
 }
