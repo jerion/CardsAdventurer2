@@ -80,7 +80,7 @@ public class Main2Activity extends AppCompatActivity {
         exp.setText("0+/"+player_stats[3]);
         money.setText(""+player_stats[4]);
 
-        event2.setOnClickListener(new View.OnClickListener() {
+        event1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
