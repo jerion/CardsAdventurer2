@@ -77,7 +77,7 @@ public class Main2Activity extends AppCompatActivity {
         level.setText(""+player_stats[0]);
         hp.setText(""+player_stats[1]+"/"+player_stats[1]);
         mp.setText(""+player_stats[2]+"/"+player_stats[2]);
-        exp.setText("0+/"+player_stats[3]);
+        exp.setText("0/"+player_stats[3]);
         money.setText(""+player_stats[4]);
 
         event1.setOnClickListener(new View.OnClickListener() {
