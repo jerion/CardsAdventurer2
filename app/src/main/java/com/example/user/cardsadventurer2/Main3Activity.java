@@ -36,15 +36,11 @@ public class Main3Activity extends AppCompatActivity {
         level_enemy = findViewById(R.id.level_enemy);
         hp_enemy = findViewById(R.id.hp_enemy);
         mp_enemy = findViewById(R.id.sp_enemy);
-        gear_enemy = findViewById(R.id.gear_enemy);
-        status_enemy = findViewById(R.id.status_enemy);
         name_target = findViewById(R.id.name_target);
         intro_target = findViewById(R.id.intro_target);
         level_player = findViewById(R.id.level_player);
         hp_player = findViewById(R.id.hp_player);
         mp_player = findViewById(R.id.sp_player);
-        gear_player = findViewById(R.id.gear_player);
-        status_player = findViewById(R.id.status_player);
         card_enemy = findViewById(R.id.card_enemy);
         card_num_in_hand = findViewById(R.id.card_num_in_hand);
         btn_card_enemy = findViewById(R.id.btn_card_enemy);
