@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import card.Atk_Card;
-import card.Card;
 
 public class Main3Activity extends AppCompatActivity {
 
@@ -24,9 +23,6 @@ public class Main3Activity extends AppCompatActivity {
 
     String enemy_name;
     int[] enemy_stats = new int[5];
-    Card[] card = {
-            normal_atk[1]
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
