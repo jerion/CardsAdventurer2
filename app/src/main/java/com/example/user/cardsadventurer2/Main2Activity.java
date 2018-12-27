@@ -65,8 +65,6 @@ public class Main2Activity extends AppCompatActivity {
         skill = findViewById(R.id.btn_skill);
         card_left = findViewById(R.id.card_left);
         event1 = findViewById(R.id.imbtn_event1);
-        event2 = findViewById(R.id.imbtn_event2);
-        event3 = findViewById(R.id.imbtn_event3);
         intro_event = findViewById(R.id.intro_event);
         item1 = findViewById(R.id.im_item1);
         item2 = findViewById(R.id.im_item2);
