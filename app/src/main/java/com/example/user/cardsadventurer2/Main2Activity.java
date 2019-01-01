@@ -1,5 +1,8 @@
 package com.example.user.cardsadventurer2;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,7 +87,7 @@ public class Main2Activity extends AppCompatActivity {
         event1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if (player_stats[5]>0) {
+            if ((4-player_stats[5])>0) {
                 switch (player_stats[5]) {
                     case 0:
                     case 1:
@@ -133,7 +136,18 @@ public class Main2Activity extends AppCompatActivity {
             }
 
             else{
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+                builder.setTitle("遊戲結束");
+                builder.setMessage("");
+                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent1 = new Intent(Main2Activity.this, MainActivity.class);
+                        startActivity(intent1);
+                        finish();
+                    }
+                });
+                builder.show();
             }
             }
         });
