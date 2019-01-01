@@ -1,7 +1,9 @@
 package com.example.user.cardsadventurer2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,13 +23,20 @@ public class Main3Activity extends AppCompatActivity {
     ImageView im_enemy;
     ListView card_battlefield, card_player;
 
+    Intent intent2 = new Intent(Main3Activity.this, Main2Activity.class);
+
     String enemy_name;
-    int[] enemy_stats = new int[5];
+    int[] player_stats = new int[6];
+    int[] monster_stats = new int[6];
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        Bundle bundle = getIntent().getExtras().getBundle("new");
 
         level_enemy = findViewById(R.id.level_enemy);
         hp_enemy = findViewById(R.id.hp_enemy);
@@ -50,7 +59,29 @@ public class Main3Activity extends AppCompatActivity {
         card_battlefield = findViewById(R.id.card_battlefield);
         card_player = findViewById(R.id.card_player);
 
+        player_stats[0] = bundle.getInt("lv");
+        player_stats[1] = bundle.getInt("hp");
+        player_stats[2] = bundle.getInt("mp");
+        player_stats[3] = bundle.getInt("exp");
+        player_stats[4] = bundle.getInt("money");
+        player_stats[5] = bundle.getInt("stage");
 
+        btn_card_enemy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                intent2.setClass(Main3Activity.this, Main2Activity.class);
+                bundle.putInt("lv", player_stats[0]);
+                bundle.putInt("hp", player_stats[1]);
+                bundle.putInt("mp", player_stats[2]);
+                bundle.putInt("exp", player_stats[3]);
+                bundle.putInt("money", player_stats[4]);
+                bundle.putInt("stage", player_stats[5]+1);
+                intent2.putExtra("new", bundle);
+                startActivity(intent2);
+                finish();
+            }
+        });
     }
 
     Atk_Card normal_atk[] = {

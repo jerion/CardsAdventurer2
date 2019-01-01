@@ -14,7 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     Button bstart;
     Button bcontinue;
-    Charactor player = new Charactor("愚蠢的人", 1, 20, 1, 2,25);
+    Charactor player = new Charactor("愚蠢的人", 1, 20, 1, 0,25);
+
+    int stage = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         bstart = findViewById(R.id.btn_sta);
         bcontinue = findViewById(R.id.btn_con);
 
-        final int[] player_stats = {player.Level, player.health, player.mana, player.experience, player.Money};
+        final int[] player_stats = {player.Level, player.health, player.mana, player.experience, player.Money, stage};
         int[] old_player;
 
         bstart.setOnClickListener(new View.OnClickListener() {
@@ -37,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putInt("mp", player_stats[2]);
                 bundle.putInt("exp", player_stats[3]);
                 bundle.putInt("money", player_stats[4]);
+                bundle.putInt("stage", player_stats[5]);
                 intent.putExtra("new", bundle);
                 startActivity(intent);
+                finish();
             }
         });
 

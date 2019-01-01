@@ -289,12 +289,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="325dp" />
 
-            <Button
-                android:id="@+id/btn_skill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="技能" />
-
             <ImageButton
                 android:id="@+id/imbtn_item"
                 android:layout_width="match_parent"
