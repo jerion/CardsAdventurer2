@@ -25,14 +25,15 @@ public class Main2Activity extends AppCompatActivity {
     ImageButton event1;
 
     int[] player_stats = new int[6];
-    int[] monster_stats = new int[6];
+    String monster_name = new String();
+    int[] monster_stats = new int[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Bundle bundle = getIntent().getExtras().getBundle("new");
+        final Bundle bundle = getIntent().getExtras().getBundle("new");
 
         player_stats[0] = bundle.getInt("lv");
         player_stats[1] = bundle.getInt("hp");
@@ -42,12 +43,12 @@ public class Main2Activity extends AppCompatActivity {
         player_stats[5] = bundle.getInt("stage");
 
 
-        if (player_stats[3]>player[player_stats[0]-1].experience)
+        while (player_stats[3]>=player[player_stats[0]-1].experience)
         {
             player_stats[1] = player[player_stats[0]].health;
             player_stats[2] = player[player_stats[0]].mana;
             player_stats[3] = player_stats[3] - player[player_stats[0]-1].experience;
-            player_stats[0] = player_stats[0] + 1;
+            player_stats[0] = player[player_stats[0]].Level;
         }
 
         target = findViewById(R.id.name_target);
@@ -83,14 +84,25 @@ public class Main2Activity extends AppCompatActivity {
         event1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                switch (player_stats[5])
-                {
+            if (player_stats[5]>0) {
+                switch (player_stats[5]) {
                     case 0:
                     case 1:
                     case 2:
+                        monster_stats[0] = monster[player_stats[5]].Level;
+                        monster_stats[1] = monster[player_stats[5]].health;
+                        monster_stats[2] = monster[player_stats[5]].mana;
+                        monster_stats[3] = monster[player_stats[5]].experience;
+                        monster_stats[4] = monster[player_stats[5]].Money;
+                        monster_name = monster[player_stats[5]].Name;
                         break;
                     case 3:
+                        monster_stats[0] = boss[0].Level;
+                        monster_stats[1] = boss[0].health;
+                        monster_stats[2] = boss[0].mana;
+                        monster_stats[3] = boss[0].experience;
+                        monster_stats[4] = boss[0].Money;
+                        monster_name = boss[0].Name;
                         break;
                     default:
                         break;
@@ -98,24 +110,40 @@ public class Main2Activity extends AppCompatActivity {
 
                 Intent intent3 = new Intent(Main2Activity.this, Main3Activity.class);
                 Bundle bundle3 = new Bundle();
+                Bundle bundle3_1 = new Bundle();
+
                 bundle3.putInt("lv", player_stats[0]);
                 bundle3.putInt("hp", player_stats[1]);
                 bundle3.putInt("mp", player_stats[2]);
                 bundle3.putInt("exp", player_stats[3]);
                 bundle3.putInt("money", player_stats[4]);
                 bundle3.putInt("stage", player_stats[5]);
+
+                bundle3_1.putInt("lv", monster_stats[0]);
+                bundle3_1.putInt("hp", monster_stats[1]);
+                bundle3_1.putInt("mp", monster_stats[2]);
+                bundle3_1.putInt("exp", monster_stats[3]);
+                bundle3_1.putInt("money", monster_stats[4]);
+                bundle3_1.putString("name", monster_name);
+
                 intent3.putExtra("new", bundle3);
+                intent3.putExtra("monster", bundle3_1);
                 startActivity(intent3);
                 finish();
+            }
+
+            else{
+
+            }
             }
         });
     }
 
     Charactor player[] = {
-            new Charactor("",1,20,1,2,0),
-            new Charactor("",2,25,2,5,0),
-            new Charactor("",3,30,3,3,0),
-            new Charactor("",4,35,4,0,0)
+            new Charactor("",1,20,1,1,0),
+            new Charactor("",2,25,2,3,0),
+            new Charactor("",3,30,3,6,0),
+            new Charactor("",4,35,4,20,0)
     };
 
     Charactor monster[] = {

@@ -11,12 +11,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import card.Atk_Card;
+import charactor.Charactor;
 
 public class Main3Activity extends AppCompatActivity {
 
     TextView hp_enemy, mp_enemy, hp_player, mp_player;
-    TextView hpn_enemy, mpn_enemy, hpn_player, mpn_player;
-    TextView level_enemy, gear_enemy, status_enemy, level_player, gear_player, status_player;
+    TextView level_enemy, level_player;
     TextView name_target, intro_target, card_enemy, card_num_in_hand;
     Button btn_card_enemy, btn_graveyard_enemy, btn_card_player, btn_graveyard_player, btn_skill, btn_end_turn;
     ImageButton imbtn_item;
@@ -27,7 +27,7 @@ public class Main3Activity extends AppCompatActivity {
 
     String enemy_name;
     int[] player_stats = new int[6];
-    int[] monster_stats = new int[6];
+    int[] monster_stats = new int[5];
 
 
 
@@ -37,6 +37,7 @@ public class Main3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
 
         Bundle bundle = getIntent().getExtras().getBundle("new");
+        Bundle bundle1 = getIntent().getExtras().getBundle("monster");
 
         level_enemy = findViewById(R.id.level_enemy);
         hp_enemy = findViewById(R.id.hp_enemy);
@@ -66,6 +67,28 @@ public class Main3Activity extends AppCompatActivity {
         player_stats[4] = bundle.getInt("money");
         player_stats[5] = bundle.getInt("stage");
 
+        enemy_name = bundle1.getString("name");
+        monster_stats[0] = bundle1.getInt("lv");
+        monster_stats[1] = bundle1.getInt("hp");
+        monster_stats[2] = bundle1.getInt("mp");
+        monster_stats[3] = bundle1.getInt("exp");
+        monster_stats[4] = bundle1.getInt("money");
+
+        String[] events = {
+                "enemy1", "enemy2", "enemy4", "enemy3", "target5"
+        };
+        String uri = "@drawable/" + events[player_stats[5]].toString();
+        int imgRes = getResources().getIdentifier(uri, null, getPackageName());
+        im_enemy.setImageResource(imgRes);
+
+        level_player.setText(""+player_stats[0]);
+        hp_player.setText(""+player_stats[1]+"/"+player_stats[1]);
+        mp_player.setText(""+player_stats[2]+"/"+player_stats[2]);
+
+        level_enemy.setText(""+monster_stats[0]);
+        hp_enemy.setText(""+monster_stats[1]+"/"+monster_stats[1]);
+        mp_enemy.setText(""+monster_stats[2]+"/"+monster_stats[2]);
+
         btn_card_enemy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +97,8 @@ public class Main3Activity extends AppCompatActivity {
                 bundle.putInt("lv", player_stats[0]);
                 bundle.putInt("hp", player_stats[1]);
                 bundle.putInt("mp", player_stats[2]);
-                bundle.putInt("exp", player_stats[3]);
-                bundle.putInt("money", player_stats[4]);
+                bundle.putInt("exp", player_stats[3]+monster_stats[3]);
+                bundle.putInt("money", player_stats[4]+monster_stats[4]);
                 bundle.putInt("stage", player_stats[5]+1);
                 intent2.putExtra("new", bundle);
                 startActivity(intent2);
@@ -84,10 +107,10 @@ public class Main3Activity extends AppCompatActivity {
         });
     }
 
-    Atk_Card normal_atk[] = {
-            new Atk_Card("攻擊", "無", 1, 0, 2),
-            new Atk_Card("攻擊", "無", 2, 0, 4),
-            new Atk_Card("攻擊", "無", 3, 0, 6),
-            new Atk_Card("攻擊", "無", 4, 0, 8),
+    Charactor player[] = {
+            new Charactor("",1,20,1,2,0),
+            new Charactor("",2,25,2,5,0),
+            new Charactor("",3,30,3,3,0),
+            new Charactor("",4,35,4,0,0)
     };
 }
