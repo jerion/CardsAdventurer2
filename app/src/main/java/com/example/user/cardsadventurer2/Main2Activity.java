@@ -15,9 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import card.Atk_Card;
 import card.Card;
-import card.Effect_Card;
 import charactor.Charactor;
 import stage.Stage;
 
@@ -151,6 +149,8 @@ public class Main2Activity extends AppCompatActivity {
             }
             }
         });
+
+        cardArrayList.add(normal_atk[0]);
     }
 
     Charactor player[] = {
@@ -168,35 +168,54 @@ public class Main2Activity extends AppCompatActivity {
 
     Charactor boss[] = {new Charactor("劍客", 4, 48, 4, 0, 0)};
 
-    Atk_Card normal_atk[] = {
-            new Atk_Card("攻擊", "無", 1, 0, 2),
-            new Atk_Card("攻擊", "無", 2, 0, 4),
-            new Atk_Card("攻擊", "無", 3, 0, 6),
-            new Atk_Card("攻擊", "無", 4, 0, 8),
-    };
+    ArrayList<Card> cardArrayList = new ArrayList<>();
+    Card normal_atk[] = new Card[4];
+    Card fire_ball[] = new Card[6];
+    Card ice_ball[] = new Card[3];
+    Card meditation[] = new Card[4];
+    Card corpus[] = new Card[3];
+    public void Cardset(){
+        normal_atk[0].set_AttackCard("攻擊", "無", 1, 0, 2);
+        normal_atk[1].set_AttackCard("攻擊", "無", 2, 0, 4);
+        normal_atk[2].set_AttackCard("攻擊", "無", 3, 0, 6);
+        normal_atk[3].set_AttackCard("攻擊", "無", 4, 0, 8);
 
-    Atk_Card fire_ball[] = {
-            new Atk_Card("火球", "火", 1, 1, 3),
-            new Atk_Card("火球", "火", 2, 2, 6),
-            new Atk_Card("火球", "火", 3, 3, 9),
-            new Atk_Card("火球", "火", 4, 4, 12),
-    };
+        fire_ball[0].set_AttackCard("火球", "火", 1, 1, 3);
+        fire_ball[1].set_AttackCard("火球", "火", 2, 2, 6);
+        fire_ball[2].set_AttackCard("火球", "火", 3, 3, 10);
+        fire_ball[3].set_AttackCard("火球", "火", 4, 4, 15);
+        fire_ball[4].set_AttackCard("火球", "火", 5, 5, 21);
+        fire_ball[5].set_AttackCard("火球", "火", 6, 6, 30);
 
-    Atk_Card ice_ball[] = {
-            new Atk_Card("冰彈", "冰", 1, 1, 4),
-            new Atk_Card("冰彈", "冰", 2, 2, 6),
-            new Atk_Card("冰彈", "冰", 3, 4, 14)
-    };
+        ice_ball[0].set_AttackCard("冰彈", "水", 1, 1, 4);
+        ice_ball[1].set_AttackCard("冰彈", "水", 2, 2, 7);
+        ice_ball[2].set_AttackCard("冰彈", "水", 3, 4, 14);
 
-    Effect_Card meditation[] = {
-            new Effect_Card("冥想", "無", 1, 1, 3, 0),
-            new Effect_Card("冥想", "無", 2, 2, 6, 0)
-    };
+        meditation[0].set_EffectCard("冥想", "無", 1, 1, 2, 0);
+        meditation[1].set_EffectCard("冥想", "無", 2, 2, 5, 0);
+        meditation[2].set_EffectCard("冥想", "無", 3, 3, 8, 0);
+        meditation[3].set_EffectCard("冥想", "無", 4, 4, 11, 0);
 
-    Effect_Card corpus[] = {
-            new Effect_Card("法典", "無", 1, 1,0, 1),
-            new Effect_Card("法典", "無", 2, 3,0, 2)
-    };
+        corpus[0].set_EffectCard("法典", "無", 1, 1,0, 1);
+        corpus[1].set_EffectCard("法典", "無", 2, 3,0, 2);
+        corpus[2].set_EffectCard("法典", "無", 3, 5,0, 3);
+
+
+        for (int i = 0; i<normal_atk.length; i++)
+            cardArrayList.add(normal_atk[i]);
+
+        for (int i = 0; i<fire_ball.length; i++)
+            cardArrayList.add(fire_ball[i]);
+
+        for (int i = 0; i<ice_ball.length; i++)
+            cardArrayList.add(ice_ball[i]);
+
+        for (int i = 0; i<meditation.length; i++)
+            cardArrayList.add(meditation[i]);
+
+        for (int i = 0; i<corpus.length; i++)
+            cardArrayList.add(corpus[i]);
+    }
 
     Stage stage[] = {
             new Stage("蝙蝠","蝙蝠又名蟙䘃，是對翼手目動物的通稱，翼手目是哺乳動物中僅次於齧齒目動物的第二大類群，現生種共有19科185屬962種，除極地和大洋中的一些島嶼外，分布遍於全世界。"),
