@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import card.Atk_Card;
 import charactor.Charactor;
 
 public class Main3Activity extends AppCompatActivity {
@@ -18,7 +17,7 @@ public class Main3Activity extends AppCompatActivity {
     TextView hp_enemy, mp_enemy, hp_player, mp_player;
     TextView level_enemy, level_player;
     TextView name_target, intro_target, card_enemy, card_num_in_hand;
-    Button btn_card_enemy, btn_graveyard_enemy, btn_card_player, btn_graveyard_player, btn_skill, btn_end_turn;
+    Button btn_card_enemy, btn_graveyard_enemy, btn_card_player, btn_graveyard_player, btn_end_turn;
     ImageButton imbtn_item;
     ImageView im_enemy;
     ListView card_battlefield, card_player;
@@ -53,7 +52,6 @@ public class Main3Activity extends AppCompatActivity {
         btn_graveyard_enemy = findViewById(R.id.btn_graveyard_enemy);
         btn_card_player = findViewById(R.id.btn_card_player);
         btn_graveyard_player = findViewById(R.id.btn_graveyard_player);
-        btn_skill = findViewById(R.id.btn_skill);
         btn_end_turn = findViewById(R.id.btn_end_turn);
         imbtn_item = findViewById(R.id.imbtn_item);
         im_enemy = findViewById(R.id.im_enemy);

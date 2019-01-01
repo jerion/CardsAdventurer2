@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import charactor.Charactor;
 
 
@@ -27,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
         final int[] player_stats = {player.Level, player.health, player.mana, player.experience, player.Money, stage};
         int[] old_player;
+        final ArrayList<Integer> card_hand = new ArrayList<>();
+        card_hand.add(0);
+        card_hand.add(0);
+        card_hand.add(4);
+        card_hand.add(4);
+        card_hand.add(10);
+        card_hand.add(10);
+        card_hand.add(13);
+        card_hand.add(13);
+        card_hand.add(17);
+        card_hand.add(17);
 
         bstart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putInt("exp", player_stats[3]);
                 bundle.putInt("money", player_stats[4]);
                 bundle.putInt("stage", player_stats[5]);
+                bundle.putIntegerArrayList("card", card_hand);
+
                 intent.putExtra("new", bundle);
                 startActivity(intent);
                 finish();

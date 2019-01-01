@@ -22,12 +22,13 @@ import stage.Stage;
 public class Main2Activity extends AppCompatActivity {
 
     TextView target, conversation, level, hp, mp, exp, money, card_left;
-    Button card, skill;
+    Button card;
     ImageButton event1;
 
     int[] player_stats = new int[6];
     String monster_name = new String();
     int[] monster_stats = new int[5];
+    ArrayList<Integer> card_hand = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class Main2Activity extends AppCompatActivity {
         player_stats[3] = bundle.getInt("exp");
         player_stats[4] = bundle.getInt("money");
         player_stats[5] = bundle.getInt("stage");
-
+        card_hand = bundle.getIntegerArrayList("card");
 
         while (player_stats[3]>=player[player_stats[0]-1].experience)
         {
@@ -60,7 +61,6 @@ public class Main2Activity extends AppCompatActivity {
         exp = findViewById(R.id.exp_player);
         money = findViewById(R.id.gold);
         card = findViewById(R.id.btn_card_player);
-        skill = findViewById(R.id.btn_skill);
         card_left = findViewById(R.id.card_left);
         event1 = findViewById(R.id.imbtn_event1);
 
@@ -169,34 +169,36 @@ public class Main2Activity extends AppCompatActivity {
     Charactor boss[] = {new Charactor("劍客", 4, 48, 4, 0, 0)};
 
     ArrayList<Card> cardArrayList = new ArrayList<>();
+
     Card normal_atk[] = new Card[4];
     Card fire_ball[] = new Card[6];
     Card ice_ball[] = new Card[3];
     Card meditation[] = new Card[4];
     Card corpus[] = new Card[3];
+
     public void Cardset(){
-        normal_atk[0].set_AttackCard("攻擊", "無", 1, 0, 2);
+        normal_atk[0].set_AttackCard("攻擊", "無", 1, 0, 2);//0
         normal_atk[1].set_AttackCard("攻擊", "無", 2, 0, 4);
         normal_atk[2].set_AttackCard("攻擊", "無", 3, 0, 6);
         normal_atk[3].set_AttackCard("攻擊", "無", 4, 0, 8);
 
-        fire_ball[0].set_AttackCard("火球", "火", 1, 1, 3);
+        fire_ball[0].set_AttackCard("火球", "火", 1, 1, 3);//4
         fire_ball[1].set_AttackCard("火球", "火", 2, 2, 6);
         fire_ball[2].set_AttackCard("火球", "火", 3, 3, 10);
         fire_ball[3].set_AttackCard("火球", "火", 4, 4, 15);
         fire_ball[4].set_AttackCard("火球", "火", 5, 5, 21);
         fire_ball[5].set_AttackCard("火球", "火", 6, 6, 30);
 
-        ice_ball[0].set_AttackCard("冰彈", "水", 1, 1, 4);
+        ice_ball[0].set_AttackCard("冰彈", "水", 1, 1, 4);//10
         ice_ball[1].set_AttackCard("冰彈", "水", 2, 2, 7);
         ice_ball[2].set_AttackCard("冰彈", "水", 3, 4, 14);
 
-        meditation[0].set_EffectCard("冥想", "無", 1, 1, 2, 0);
+        meditation[0].set_EffectCard("冥想", "無", 1, 1, 2, 0);//13
         meditation[1].set_EffectCard("冥想", "無", 2, 2, 5, 0);
         meditation[2].set_EffectCard("冥想", "無", 3, 3, 8, 0);
         meditation[3].set_EffectCard("冥想", "無", 4, 4, 11, 0);
 
-        corpus[0].set_EffectCard("法典", "無", 1, 1,0, 1);
+        corpus[0].set_EffectCard("法典", "無", 1, 1,0, 1);//17
         corpus[1].set_EffectCard("法典", "無", 2, 3,0, 2);
         corpus[2].set_EffectCard("法典", "無", 3, 5,0, 3);
 
