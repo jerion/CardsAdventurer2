@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import card.Atk_Card;
 import card.Card;
 import card.Effect_Card;
@@ -70,6 +72,13 @@ public class Main2Activity extends AppCompatActivity {
         conversation.setText(stage[player_stats[5]].Description);
 
         card_left.setText(""+(4-player_stats[5]));
+
+        String[] events = {
+                "enemy1", "enemy2", "enemy4", "enemy3", "target5"
+        };
+        String uri = "@drawable/" + events[player_stats[5]].toString();
+        int imgRes = getResources().getIdentifier(uri, null, getPackageName());
+        event1.setImageResource(imgRes);
 
         event1.setOnClickListener(new View.OnClickListener() {
             @Override
