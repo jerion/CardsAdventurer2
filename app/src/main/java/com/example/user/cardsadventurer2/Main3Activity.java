@@ -1,10 +1,13 @@
 package com.example.user.cardsadventurer2;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -22,7 +25,7 @@ public class Main3Activity extends AppCompatActivity {
     TextView hp_enemy, mp_enemy, hp_player, mp_player;
     TextView level_enemy, level_player;
     TextView name_target, intro_target, card_enemy, card_num_in_hand;
-    Button btn_card_player, btn_graveyard_player, btn_end_turn;
+    Button btn_card_player, btn_end_turn;
     ImageView im_enemy;
     ListView card_battlefield;
     GridView card_player, grida;
@@ -34,17 +37,17 @@ public class Main3Activity extends AppCompatActivity {
     int[] monster_stats = new int[5];
     int[] monster_stats_max = new int[5];
     ArrayList<Integer> card_hand = new ArrayList<Integer>();
-    ArrayList<Integer> card_now = new ArrayList<>();
-
+    ArrayList<Integer> card_now = new ArrayList<Integer>();
     ArrayList<Integer> card_handd = new ArrayList<Integer>();
 
     ArrayList<Card> cardArrayList = new ArrayList<>();
-
     Card normal_atk[] = new Card[4];
     Card fire_ball[] = new Card[6];
     Card ice_ball[] = new Card[3];
     Card meditation[] = new Card[4];
     Card corpus[] = new Card[3];
+
+    int game_over;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +69,12 @@ public class Main3Activity extends AppCompatActivity {
         card_enemy = findViewById(R.id.card_enemy);
         card_num_in_hand = findViewById(R.id.card_num_in_hand);
         btn_card_player = findViewById(R.id.button2);
-        btn_graveyard_player = findViewById(R.id.btn_graveyard_player);
         btn_end_turn = findViewById(R.id.btn_end_turn);
         im_enemy = findViewById(R.id.im_enemy);
         card_battlefield = findViewById(R.id.card_battlefield);
         card_player = findViewById(R.id.card_player);
         grida = findViewById(R.id.grida);
-
+        //初始值設置
         player_stats[0] = bundle.getInt("lv");
         player_stats[1] = bundle.getInt("hp");
         player_stats[2] = bundle.getInt("mp");
@@ -80,7 +82,7 @@ public class Main3Activity extends AppCompatActivity {
         player_stats[4] = bundle.getInt("money");
         player_stats[5] = bundle.getInt("stage");
         card_hand = bundle.getIntegerArrayList("card");
-        card_handd = bundle.getIntegerArrayList("card");
+        card_handd = card_hand;
 
         enemy_name = bundle1.getString("name");
         monster_stats[0] = bundle1.getInt("lv");
@@ -90,9 +92,7 @@ public class Main3Activity extends AppCompatActivity {
         monster_stats[4] = bundle1.getInt("money");
         monster_stats_max = monster_stats;
 
-        String[] events = {
-                "enemy1", "enemy2", "enemy4", "enemy3"
-        };
+        String[] events = {"enemy1", "enemy2", "enemy4", "enemy3"};
         String uri = "@drawable/" + events[player_stats[5]].toString();
         int imgRes = getResources().getIdentifier(uri, null, getPackageName());
         im_enemy.setImageResource(imgRes);
@@ -105,63 +105,113 @@ public class Main3Activity extends AppCompatActivity {
         hp_enemy.setText("" + monster_stats[1] + "/" + monster_stats_max[1]);
         mp_enemy.setText("" + monster_stats[2] + "/" + monster_stats_max[2]);
 
-        btn_card_player.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i<3; i++){
+            card_now.add(card_hand.get(0).intValue());
+            card_hand.remove(0);
+        }
+            Data[] Cardnow = new Data[card_now.size()];
+            for (int i = 0; i < card_now.size(); i++) {
+                Cardnow[i] = new Data();
+                Cardnow[i].name = String.valueOf(
+                        cardArrayList.get(card_now.get(i).intValue()).level);
+                setname(Cardnow[i], card_now.get(i).intValue());
+            }
+            myAdapter CardAdapter1 = new myAdapter(Cardnow, R.layout.card);
+            final GridView cardnowshow = findViewById(R.id.card_player);
+            cardnowshow.setAdapter(CardAdapter1);
+            card_num_in_hand.setText("" + card_now.size() + "/10");
+        //初始值完成
+        //選擇卡片
+            cardnowshow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (cardArrayList.get(card_now.get(position).intValue()).mana <= player_stats[2]) { //假設魔力足夠
+                        player_stats[2] = player_stats[2] - cardArrayList.get(card_now.get(position).intValue()).mana;
+                        monster_stats[1] = monster_stats[1] - cardArrayList.get(card_now.get(position).intValue()).attack;
+                        player_stats[2] = player_stats[2] + cardArrayList.get(card_now.get(position).intValue()).add_mana;
+                        if (cardArrayList.get(card_now.get(position).intValue()).add_card > 0){
+                            for (int i = 0; i < cardArrayList.get(card_now.get(position).intValue()).add_card; i++) {
+                                if (card_now.size() >= 10)
+                                    break;
+                                if (card_hand.size() <= 0)
+                                    card_hand = card_handd;
+                                card_now.add(card_hand.get(0).intValue());
+                                card_hand.remove(0);
+                            }
+                        }
+                        hp_player.setText("" + player_stats[1] + "/" + player[player_stats[0] - 1].health);
+                        mp_player.setText("" + player_stats[2] + "/" + player[player_stats[0] - 1].mana);
+                        hp_enemy.setText("" + monster_stats[1] + "/" + monster_stats_max[1]);
+                        mp_enemy.setText("" + monster_stats[2] + "/" + monster_stats_max[2]);
+                        card_now.remove(position);
+                        Data[] Cardnow = new Data[card_now.size()];
+                        for (int i = 0; i < card_now.size(); i++) {
+                            Cardnow[i] = new Data();
+                            Cardnow[i].name = String.valueOf(
+                                    cardArrayList.get(card_now.get(i).intValue()).level);
+                            setname(Cardnow[i], card_now.get(i).intValue()); }
+                        myAdapter CardAdapter1 = new myAdapter(Cardnow, R.layout.card);
+                        GridView cardnowshow = findViewById(R.id.card_player);
+                        cardnowshow.setAdapter(CardAdapter1);
+                        card_num_in_hand.setText("" + card_now.size() + "/10");
+
+                        lose();
+                        win();
+                    }
+                }
+            });
+
+            btn_card_player.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Data[] carddata = new Data[card_hand.size()];
-                    for (int i = 0; i<card_hand.size(); i++)
-                    {
+                    for (int i = 0; i < card_hand.size(); i++) {
                         carddata[i] = new Data();
                         carddata[i].name = String.valueOf(
                                 cardArrayList.get(card_hand.get(i).intValue()).level);
-
-                        switch (cardArrayList.get(card_hand.get(i)).name)
-                        {
-                            case "攻擊":
-                                carddata[i].photo = R.drawable.attack1;
-                                break;
-                            case "火球":
-                                carddata[i].photo = R.drawable.attack2;
-                                break;
-                            case "冰彈":
-                                carddata[i].photo = R.drawable.attack3;
-                                break;
-                            case "冥想":
-                                carddata[i].photo = R.drawable.effect2;
-                                break;
-                            case "法典":
-                                carddata[i].photo = R.drawable.effect1;
-                                break;
-
-                            default:
-                                break;
-                        }
+                        setname(carddata[i], card_hand.get(i).intValue());
                     }
                     myAdapter CardAdapter = new myAdapter(carddata, R.layout.card);
                     GridView gridView = findViewById(R.id.grida);
                     gridView.setAdapter(CardAdapter);
                 }
-        });
+            });
 
-        btn_end_turn.setOnClickListener(new View.OnClickListener() {
+            btn_end_turn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    intent2.setClass(Main3Activity.this, Main2Activity.class);
-                    bundle.putInt("lv", player_stats[0]);
-                    bundle.putInt("hp", player_stats[1]);
-                    bundle.putInt("mp", player_stats[2]);
-                    bundle.putInt("exp", player_stats[3] + monster_stats[3]);
-                    bundle.putInt("money", player_stats[4] + monster_stats[4]);
-                    bundle.putInt("stage", player_stats[5] + 1);
-                    bundle.putIntegerArrayList("card", card_handd);
-                    intent2.putExtra("new", bundle);
-                    startActivity(intent2);
-                    finish();
-                }
-        });
-    }
+                    for (int i = 0; i < 2; i++) {
+                        if (card_now.size() >= 10)
+                            break;
+                        if (card_hand.size() <= 0)
+                            card_hand = card_handd;
+                        card_now.add(card_hand.get(0).intValue());
+                        card_hand.remove(0);
+                    }
+                    Data[] Cardnow = new Data[card_now.size()];
+                    for (int i = 0; i < card_now.size(); i++) {
+                        Cardnow[i] = new Data();
+                        Cardnow[i].name = String.valueOf(
+                                cardArrayList.get(card_now.get(i).intValue()).level);
+                        setname(Cardnow[i], card_now.get(i).intValue());
+                    }
+                    myAdapter CardAdapter1 = new myAdapter(Cardnow, R.layout.card);
+                    GridView cardnowshow = findViewById(R.id.card_player);
+                    cardnowshow.setAdapter(CardAdapter1);
 
+                    if (player_stats[2] < player[player_stats[0]-1].mana)
+                        player_stats[2] = player[player_stats[0]-1].mana;
+
+                    card_num_in_hand.setText("" + card_now.size() + "/10");
+                    game_over = game_over + 1;
+                    if (game_over >= 5)
+                        player_stats[1] = 0;
+                    lose();
+                }
+            });
+
+    }
+    //副程式區
     Charactor player[] = {
             new Charactor("", 1, 20, 1, 2, 0),
             new Charactor("", 2, 25, 2, 5, 0),
@@ -225,6 +275,74 @@ public class Main3Activity extends AppCompatActivity {
 
         for (int i = 0; i<corpus.length; i++)
             cardArrayList.add(corpus[i]);
+    }
+
+    void setname(Data data,int i)
+    {
+        switch (cardArrayList.get(i).name)
+        {
+            case "攻擊":
+                data.photo = R.drawable.attack1;
+                break;
+            case "火球":
+                data.photo = R.drawable.attack2;
+                break;
+            case "冰彈":
+                data.photo = R.drawable.attack3;
+                break;
+            case "冥想":
+                data.photo = R.drawable.effect2;
+                break;
+            case "法典":
+                data.photo = R.drawable.effect1;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void win(){
+        if (monster_stats[1] <= 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Main3Activity.this);
+            builder.setTitle("你贏了");
+            builder.setMessage("獲得經驗值 " + monster_stats[3] + "\n獲得金錢 " + monster_stats[4]);
+            builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Bundle bundle = new Bundle();
+                    intent2.setClass(Main3Activity.this, Main2Activity.class);
+                    bundle.putInt("lv", player_stats[0]);
+                    bundle.putInt("hp", player_stats[1]);
+                    bundle.putInt("mp", player[player_stats[0] - 1].mana);
+                    bundle.putInt("exp", player_stats[3] + monster_stats[3]);
+                    bundle.putInt("money", player_stats[4] + monster_stats[4]);
+                    bundle.putInt("stage", player_stats[5] + 1);
+                    bundle.putIntegerArrayList("card", card_handd);
+                    intent2.putExtra("new", bundle);
+                    startActivity(intent2);
+                    finish();
+                }
+            });
+            builder.show();
+        }
+    }
+
+    void lose(){
+        if (player_stats[1] <= 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Main3Activity.this);
+            builder.setTitle("你死掉了");
+            builder.setMessage("不可能的吧");
+            builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent1 = new Intent(Main3Activity.this, MainActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+            });
+            builder.show();
+        }
     }
 
     class Data {

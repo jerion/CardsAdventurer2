@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         int[] old_player;
         final ArrayList<Integer> card_hand = new ArrayList<>();
         card_hand.add(0);
-        card_hand.add(0);
+        card_hand.add(3);
         card_hand.add(4);
         card_hand.add(4);
         card_hand.add(10);
