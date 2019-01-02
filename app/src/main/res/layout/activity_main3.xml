@@ -98,20 +98,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_card_enemy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="卡牌" />
-
-                <Button
-                    android:id="@+id/btn_graveyard_enemy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="墳場" />
-
             </LinearLayout>
 
             <Space
@@ -260,18 +246,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <ListView
+
+            <GridView
                 android:id="@+id/card_player"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-            </ListView>
+                android:layout_height="144dp" />
 
             <TextView
                 android:id="@+id/card_num_in_hand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3/10" />
+
+            <GridView
+                android:id="@+id/grida"
+                android:numColumns="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
