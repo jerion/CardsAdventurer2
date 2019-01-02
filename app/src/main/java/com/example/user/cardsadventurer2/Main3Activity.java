@@ -82,7 +82,7 @@ public class Main3Activity extends AppCompatActivity {
         player_stats[4] = bundle.getInt("money");
         player_stats[5] = bundle.getInt("stage");
         card_hand = bundle.getIntegerArrayList("card");
-        card_handd = card_hand;
+        card_handd.addAll(card_hand);
 
         enemy_name = bundle1.getString("name");
         monster_stats[0] = bundle1.getInt("lv");
