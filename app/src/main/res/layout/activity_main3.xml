@@ -243,8 +243,9 @@
 
             <GridView
                 android:id="@+id/card_player"
+                android:numColumns="4"
                 android:layout_width="match_parent"
-                android:layout_height="144dp" />
+                android:layout_height="131dp" />
 
             <TextView
                 android:id="@+id/card_num_in_hand"

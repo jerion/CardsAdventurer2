@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<Integer> card_hand = new ArrayList<>();
         card_hand.add(0);
         card_hand.add(3);
-        card_hand.add(4);
-        card_hand.add(4);
-        card_hand.add(10);
-        card_hand.add(10);
-        card_hand.add(13);
-        card_hand.add(13);
+        card_hand.add(5);
+        card_hand.add(9);
+        card_hand.add(12);
+        card_hand.add(14);
+        card_hand.add(16);
         card_hand.add(17);
-        card_hand.add(17);
+        card_hand.add(18);
+        card_hand.add(19);
 
         bstart.setOnClickListener(new View.OnClickListener() {
             @Override

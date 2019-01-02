@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -90,7 +91,8 @@ public class Main3Activity extends AppCompatActivity {
         monster_stats[2] = bundle1.getInt("mp");
         monster_stats[3] = bundle1.getInt("exp");
         monster_stats[4] = bundle1.getInt("money");
-        monster_stats_max = monster_stats;
+        for (int i = 0; i<monster_stats.length; i++)
+            monster_stats_max[i] = monster_stats[i];
 
         String[] events = {"enemy1", "enemy2", "enemy4", "enemy3"};
         String uri = "@drawable/" + events[player_stats[5]].toString();
@@ -112,8 +114,6 @@ public class Main3Activity extends AppCompatActivity {
             Data[] Cardnow = new Data[card_now.size()];
             for (int i = 0; i < card_now.size(); i++) {
                 Cardnow[i] = new Data();
-                Cardnow[i].name = String.valueOf(
-                        cardArrayList.get(card_now.get(i).intValue()).level);
                 setname(Cardnow[i], card_now.get(i).intValue());
             }
             myAdapter CardAdapter1 = new myAdapter(Cardnow, R.layout.card);
@@ -131,7 +131,7 @@ public class Main3Activity extends AppCompatActivity {
                         player_stats[2] = player_stats[2] + cardArrayList.get(card_now.get(position).intValue()).add_mana;
                         if (cardArrayList.get(card_now.get(position).intValue()).add_card > 0){
                             for (int i = 0; i < cardArrayList.get(card_now.get(position).intValue()).add_card; i++) {
-                                if (card_now.size() >= 10)
+                                if (card_now.size() > 10)
                                     break;
                                 if (card_hand.size() <= 0)
                                     card_hand = card_handd;
@@ -147,28 +147,31 @@ public class Main3Activity extends AppCompatActivity {
                         Data[] Cardnow = new Data[card_now.size()];
                         for (int i = 0; i < card_now.size(); i++) {
                             Cardnow[i] = new Data();
-                            Cardnow[i].name = String.valueOf(
-                                    cardArrayList.get(card_now.get(i).intValue()).level);
                             setname(Cardnow[i], card_now.get(i).intValue()); }
                         myAdapter CardAdapter1 = new myAdapter(Cardnow, R.layout.card);
                         GridView cardnowshow = findViewById(R.id.card_player);
                         cardnowshow.setAdapter(CardAdapter1);
                         card_num_in_hand.setText("" + card_now.size() + "/10");
 
+                        name_target.setText(cardArrayList.get(card_now.get(position).intValue()).name);
+                        intro_target.setText("atk = "+cardArrayList.get(card_now.get(position).intValue()).attack);
+
                         lose();
                         win();
                     }
+                    else {
+                        Toast.makeText(Main3Activity.this,"力氣不足",
+                                Toast.LENGTH_SHORT).show(); }
                 }
             });
 
+            //查看牌組
             btn_card_player.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Data[] carddata = new Data[card_hand.size()];
                     for (int i = 0; i < card_hand.size(); i++) {
                         carddata[i] = new Data();
-                        carddata[i].name = String.valueOf(
-                                cardArrayList.get(card_hand.get(i).intValue()).level);
                         setname(carddata[i], card_hand.get(i).intValue());
                     }
                     myAdapter CardAdapter = new myAdapter(carddata, R.layout.card);
@@ -176,7 +179,7 @@ public class Main3Activity extends AppCompatActivity {
                     gridView.setAdapter(CardAdapter);
                 }
             });
-
+            //結束回合
             btn_end_turn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -191,22 +194,22 @@ public class Main3Activity extends AppCompatActivity {
                     Data[] Cardnow = new Data[card_now.size()];
                     for (int i = 0; i < card_now.size(); i++) {
                         Cardnow[i] = new Data();
-                        Cardnow[i].name = String.valueOf(
-                                cardArrayList.get(card_now.get(i).intValue()).level);
                         setname(Cardnow[i], card_now.get(i).intValue());
                     }
                     myAdapter CardAdapter1 = new myAdapter(Cardnow, R.layout.card);
                     GridView cardnowshow = findViewById(R.id.card_player);
                     cardnowshow.setAdapter(CardAdapter1);
 
-                    if (player_stats[2] < player[player_stats[0]-1].mana)
+                    if (player_stats[2] < player[player_stats[0]-1].mana){
                         player_stats[2] = player[player_stats[0]-1].mana;
+                        mp_player.setText("" + player_stats[2] + "/" + player[player_stats[0] - 1].mana);}
 
                     card_num_in_hand.setText("" + card_now.size() + "/10");
                     game_over = game_over + 1;
-                    if (game_over >= 5)
+                    if (game_over >= 10){
                         player_stats[1] = 0;
-                    lose();
+                        hp_player.setText("" + player_stats[1] + "/" + player[player_stats[0] - 1].health);
+                        lose();}
                 }
             });
 
@@ -279,6 +282,7 @@ public class Main3Activity extends AppCompatActivity {
 
     void setname(Data data,int i)
     {
+        data.name = String.valueOf(cardArrayList.get(i).mana);
         switch (cardArrayList.get(i).name)
         {
             case "攻擊":
