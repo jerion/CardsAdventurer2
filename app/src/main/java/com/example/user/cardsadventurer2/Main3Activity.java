@@ -125,6 +125,8 @@ public class Main3Activity extends AppCompatActivity {
             cardnowshow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    name_target.setText(cardArrayList.get(card_now.get(position).intValue()).name);
+                    intro_target.setText("atk = "+cardArrayList.get(card_now.get(position).intValue()).attack);
                     if (cardArrayList.get(card_now.get(position).intValue()).mana <= player_stats[2]) { //假設魔力足夠
                         player_stats[2] = player_stats[2] - cardArrayList.get(card_now.get(position).intValue()).mana;
                         monster_stats[1] = monster_stats[1] - cardArrayList.get(card_now.get(position).intValue()).attack;
@@ -134,7 +136,7 @@ public class Main3Activity extends AppCompatActivity {
                                 if (card_now.size() > 10)
                                     break;
                                 if (card_hand.size() <= 0)
-                                    card_hand = card_handd;
+                                    card_hand.addAll(card_handd);
                                 card_now.add(card_hand.get(0).intValue());
                                 card_hand.remove(0);
                             }
@@ -143,6 +145,7 @@ public class Main3Activity extends AppCompatActivity {
                         mp_player.setText("" + player_stats[2] + "/" + player[player_stats[0] - 1].mana);
                         hp_enemy.setText("" + monster_stats[1] + "/" + monster_stats_max[1]);
                         mp_enemy.setText("" + monster_stats[2] + "/" + monster_stats_max[2]);
+
                         card_now.remove(position);
                         Data[] Cardnow = new Data[card_now.size()];
                         for (int i = 0; i < card_now.size(); i++) {
@@ -153,8 +156,6 @@ public class Main3Activity extends AppCompatActivity {
                         cardnowshow.setAdapter(CardAdapter1);
                         card_num_in_hand.setText("" + card_now.size() + "/10");
 
-                        name_target.setText(cardArrayList.get(card_now.get(position).intValue()).name);
-                        intro_target.setText("atk = "+cardArrayList.get(card_now.get(position).intValue()).attack);
 
                         lose();
                         win();
@@ -187,7 +188,7 @@ public class Main3Activity extends AppCompatActivity {
                         if (card_now.size() >= 10)
                             break;
                         if (card_hand.size() <= 0)
-                            card_hand = card_handd;
+                            card_hand.addAll(card_handd);
                         card_now.add(card_hand.get(0).intValue());
                         card_hand.remove(0);
                     }
