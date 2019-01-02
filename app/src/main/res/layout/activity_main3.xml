@@ -289,13 +289,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="325dp" />
 
-            <ImageButton
-                android:id="@+id/imbtn_item"
-                android:layout_width="match_parent"
-                android:layout_height="76dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/effect1" />
-
             <Button
                 android:id="@+id/btn_end_turn"
                 android:layout_width="match_parent"
