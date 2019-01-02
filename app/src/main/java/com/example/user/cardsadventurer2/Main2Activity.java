@@ -150,6 +150,22 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder cardlist = new AlertDialog.Builder(Main2Activity.this);
+                cardlist.setTitle("排組");
+
+                cardlist.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                cardlist.show();
+            }
+        });
+
         cardArrayList.add(normal_atk[0]);
     }
 
